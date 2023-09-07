@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 
 
 # Load the dataset
-df = pd.read_csv(r'dummydata2.csv', sep='\t')
+df = pd.read_csv(r'survey-app/dummydata2.csv', sep='\t')
 
 # Title of the Streamlit app
 st.title('Dummy Dashboard')
@@ -102,8 +102,8 @@ party_affiliation_counts = filtered_df['Afiliasi_Partai'].value_counts()
 # Define a blue gradient color scale
 blue_gradient = px.colors.sequential.dense
 
-fig_party_affiliation = px.pie(party_affiliation_counts, names=party_affiliation_counts.index,
-                               color_discrete_sequence=blue_gradient)
+fig_party_affiliation = px.bar(party_affiliation_counts, x=party_affiliation_counts.index, y=party_affiliation_counts.values,
+                               color=party_affiliation_counts.index, color_discrete_sequence=blue_gradient)
 
 st.plotly_chart(fig_party_affiliation)
 
@@ -119,8 +119,11 @@ political_ideology_counts = filtered_df['Ideologi_Politik'].value_counts()
 # Define a blue gradient color scale
 blue_gradient = px.colors.sequential.dense
 
-fig_political_ideology = px.pie(political_ideology_counts, names=political_ideology_counts.index,
-                                 color_discrete_sequence=blue_gradient)
+# Create a stacked horizontal bar chart
+fig_political_ideology = px.bar(political_ideology_counts, x=political_ideology_counts.values, y=political_ideology_counts.index,
+                                 color=political_ideology_counts.index, color_discrete_sequence=blue_gradient,
+                                 orientation='h')  # Set the orientation to horizontal
+
 st.plotly_chart(fig_political_ideology)
 
 # Bar Chart for Media Source
