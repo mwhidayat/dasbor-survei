@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 
 
 # Load the dataset
-df = pd.read_csv(r'survey-app/dummydata2.csv', sep='\t')
+df = pd.read_csv(r'dummydata2.csv', sep='\t')
 
 # Title of the Streamlit app
 st.title('Dummy Dashboard')
